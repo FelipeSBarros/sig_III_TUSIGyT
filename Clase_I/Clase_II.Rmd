@@ -1,0 +1,189 @@
+---
+title: "SIG III<br><br>"
+author: "Felipe Sodré M. Barros <br>"
+output:
+  xaringan::moon_reader:
+    css: [metropolis]
+    lib_dir: libs
+    nature:
+      highlightStyle: rainbow
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE, encoding = "UTF-8")
+library(sf)
+```
+
+# Ciencia de datos: Por donde empezaR?
+
+## Tópicos
+### 0. Instalando R y RStudio
+### 1. Organizando carpeta del proyecto
+### 2. Por qué R?
+### 3. R y RStudio
+### 4. Paquetes/Librerías
+### ...
+### X. Materiales de consulta
+
+---
+
+class: inverse, middle, center
+
+# 0. Instalando R y RStudio
+
+---
+
+class: inverse, middle, center
+
+# 1. Organizando carpeta del proyecto
+
+---
+
+class: inverse, middle, center
+
+# 2. Por qué R?
+
+---
+# 2. Por qué R?
+
+### 1. Es **grátis**!
+
+--
+
+### 2. Es amigable (**"user-friendly"**)!
+
+--
+
+### 3. Permite automatizar rutinas (tareas que se repiten)!
+
+--
+
+### 4. Nos permite hacer **graficos** de forma eficiente
+
+--
+
+### 5. Es considerada una de las **principales linguajes** para nálsisi de datos
+
+<br>
+
+[*] https://insights.stackoverflow.com/survey/2019#technology
+
+---
+
+# 2. Por qué R?
+
+<br>
+
+**~~Qué puedo hacer con R?~~**
+
+<br><br>
+
+--
+
+
+## **Cómo hacer `XXXX` en R?**
+
+---
+class: inverse, middle, center
+
+# 3. R y RStudio
+
+---
+
+background-image: url(img/general_hard_soft.png)
+background-size: 800px
+background-position: 50% 50%
+
+# Aclaración importante
+
+---
+
+background-image: url(img/r_vs_rstudio2.png),url(img/r_logo.svg),url(img/rstudio_logo.svg)
+background-size: 600px,150px,250px
+background-position: 50% 80%,28% 30%,73% 35%
+
+# 3. R y RStudio
+
+---
+
+class: clear, inverse, middle, center
+
+# 3. Entendiendo el RStudio
+
+---
+
+background-image: url(img/rstudio_console.png)
+background-size: 800px
+background-position: 50% 70%
+
+# 3. R y RStudio
+
+## Ambiente de desarrollo integrado (IDE)
+
+---
+
+background-image: url(img/rstudio_console_working.png)
+background-size: 800px
+background-position: 50% 70%
+
+# 3. R y RStudio
+
+---
+
+
+background-image: url(img/rstudio_working.png)
+background-size: 750px
+background-position: 50% 70%
+
+# 3. R y RStudio
+
+---
+class: clear, inverse, middle, center
+
+# 4. Paquetes/Librerías
+
+---
+
+background-image: url(img/package_r.png)
+background-size: 300px
+background-position: 50% 80%
+
+# 4. Paquetes/Librerías
+
+## Paquetes/Librerías son **colecciones de funciones** creadas para realizar análisis específicos o manejar distintos tipos de datos.
+
+---
+# Cargando raster de banda unica
+```{r}
+library(raster)
+r <- raster("./datos/raster/DEM_Mosaico.tif")
+r
+```
+---
+
+# vizualizando el dato espacial
+```{r}
+plot(r)
+```
+
+---
+# cargando el límite de misiones
+```{r}
+library(sf)
+
+misiones <- read_sf("./datos/vector/Misiones.shp")
+misiones
+```
+---
+
+# Operación lógica
+
+---
+
+# Transformando SRC
+```{r}
+r_posgar <- raster::projectRaster(r, crs(misiones))
+r_posgar
+```
